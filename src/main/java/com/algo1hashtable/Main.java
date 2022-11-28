@@ -16,6 +16,7 @@ public class Main {
         newHashtable.put(6, "17");
         newHashtable.put(8, "85");
         newHashtable.put(24, "100");
+        newHashtable.put(35, "neuer");
 
         // return hashtable initial fill
         newHashtable.returnHashtable(); 
@@ -25,11 +26,9 @@ public class Main {
 
         // remove value at key 2 from hashtable
         newHashtable.remove(2);
-
-        newHashtable.remove(15);
+        
         // return hashtable after value has been removed
         newHashtable.returnHashtable();
-
     }
 }
 

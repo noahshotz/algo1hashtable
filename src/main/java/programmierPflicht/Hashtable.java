@@ -1,15 +1,13 @@
 package programmierPflicht;
 
-import java.util.AbstractMap;
 import java.util.LinkedList;
 import java.util.Map;
-import java.util.Map.Entry;
 
 public class Hashtable implements IntStringMap {
 
     // k sets length of hashtable and mod factor
     private int k;
-    private LinkedList<Entry<Integer, String>>[] hashtable;
+    private LinkedList<KeyValuePair>[] hashtable;
 
     // constructor
     @SuppressWarnings({"unchecked"})
@@ -18,32 +16,61 @@ public class Hashtable implements IntStringMap {
         hashtable = new LinkedList[k];
     }
 
+    class KeyValuePair implements Map.Entry<Integer, String> {
+        private Integer key;
+        private String value;
+
+        public KeyValuePair(Integer key, String value) {
+            this.key = key;
+            this.value = value;
+        }
+
+        @Override
+        public Integer getKey() {
+            return key;
+        }
+
+        @Override
+        public String getValue() {
+            return value;
+        }
+
+        @Override
+        public String setValue(String value) {
+            this.value = value;
+            return value;
+        }
+    }
+    private KeyValuePair KeyValuePair(Integer key, String value) {
+        return new KeyValuePair(key, value);
+    }
+
     // helper to pretty-print hashtable
     public void returnHashtable() {
         String returnHashtable = "";
-
-        for (int i = 0; i < hashtable.length; i++) {
-            returnHashtable += "Index " + i + ": " + hashtable[i] + "\n";
+        for (int x = 0; x < hashtable.length; x++) {
+            if (hashtable[x] != null) {
+                returnHashtable += "hashtable[" + x + "] = ";
+                for (int z = 0; z < hashtable[x].size(); z++) {
+                    returnHashtable +=
+                    "["
+                    + hashtable[x].get(z).getKey() 
+                    + "=" 
+                    + hashtable[x].get(z).getValue()
+                    + "]";
+                }
+                returnHashtable += " \n";
+            } else {
+                returnHashtable += "hashtable[" + x + "] = [null]" + "\n";
+            }
         }
-        System.out.println("---------------");
         System.out.println(returnHashtable);
-        System.out.println("---------------");
     }
 
     // hash keys using mod function
     public static int hashCode(Integer key, int k) {
         int hashedKey = Math.abs(key % k);
         return hashedKey;
-    }
-
-    // store key-value-pairs in linkedlist
-    static class KeyValuePair {
-        public static KeyValuePair newEntry;
-
-        public static Entry<Integer, String> newEntry(Integer key, String value) {
-            Map.Entry<Integer, String> newEntry = new AbstractMap.SimpleEntry<Integer, String>(key, value);
-            return newEntry;
-        }
     }
 
     // put-method
@@ -56,12 +83,12 @@ public class Hashtable implements IntStringMap {
         // index = hashed key
         boolean keyExists = false;
         if (hashtable[hashedKey] == null) {
-            hashtable[hashedKey] = new LinkedList<Entry<Integer, String>>();
-            hashtable[hashedKey].addLast(KeyValuePair.newEntry(key, value));
+            hashtable[hashedKey] = new LinkedList<KeyValuePair>();
+            hashtable[hashedKey].addLast(KeyValuePair(key, value));
         } else {
             // overwrite value if keys are duplicate
             int i = 0;
-            Map.Entry<Integer, String> hashtableItem = hashtable[hashedKey].get(i);
+            KeyValuePair hashtableItem = hashtable[hashedKey].get(i);
             for (i = 0; i < hashtable[hashedKey].size(); i++) {
                 if (hashtableItem.getKey() == key) {
                     keyExists = true;
@@ -71,13 +98,13 @@ public class Hashtable implements IntStringMap {
                             // entry position
                             i,
                             // entry value
-                            KeyValuePair.newEntry(key, value));
+                            KeyValuePair(key, value));
                     return removedValue;
                 }
             }
             // add key & value if key does not exist yet
             if (!keyExists) {
-                hashtable[hashedKey].addLast(KeyValuePair.newEntry(key, value));
+                hashtable[hashedKey].addLast(KeyValuePair(key, value));
             }
         }
         return null;
@@ -89,8 +116,8 @@ public class Hashtable implements IntStringMap {
         String getValue = null;
         if (hashtable[hashedKey] != null) {
             int i = 0;
-            Map.Entry<Integer, String> hashtableItem = hashtable[hashedKey].get(i);
             for (i = 0; i < hashtable[hashedKey].size(); i++) {
+                KeyValuePair hashtableItem = hashtable[hashedKey].get(i);
                 if (hashtableItem.getKey() == key) {
                     getValue = hashtableItem.getValue();
                 }
@@ -101,7 +128,7 @@ public class Hashtable implements IntStringMap {
         if (getValue == null) {
             return null;
         } else {
-            System.out.println("Matching value for key " + key + ": " + getValue + "\n");
+            System.out.println("Received value for key " + key + ": " + getValue + "\n");
             return getValue;
         }
     }
@@ -112,8 +139,8 @@ public class Hashtable implements IntStringMap {
         String removedValue = null;
         int i = 0;
         if (hashtable[hashedKey] != null) {
-            Map.Entry<Integer, String> hashtableItem = hashtable[hashedKey].get(i);
             for (i = 0; i < hashtable[hashedKey].size(); i++) {
+                KeyValuePair hashtableItem = hashtable[hashedKey].get(i);
                 if (hashtableItem.getKey() == key) {
                     removedValue = hashtableItem.getValue();
                     hashtable[hashedKey].remove(i);
@@ -125,7 +152,7 @@ public class Hashtable implements IntStringMap {
         if (removedValue == null) {
             return null;
         } else {
-            System.out.println("Removed value for key " + key + ": " + removedValue);
+            System.out.println("Removed value for key " + key + ": " + removedValue +  "\n");
             return removedValue;
         }
     }
