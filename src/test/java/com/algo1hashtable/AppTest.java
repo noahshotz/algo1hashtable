@@ -160,11 +160,11 @@ class AppTest {
         newHashtable.put(6, "17");
         newHashtable.put(8, "85");
         newHashtable.put(24, "100");
-        newHashtable.put(35, "neuer");
+        newHashtable.put(35, "900");
 
         // get value from hashtable at key 2
         String actual = newHashtable.remove(35);
 
-        assertEquals("neuer", actual);
+        assertEquals("900", actual);
     }
 }

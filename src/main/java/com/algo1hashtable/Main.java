@@ -16,7 +16,7 @@ public class Main {
         newHashtable.put(6, "17");
         newHashtable.put(8, "85");
         newHashtable.put(24, "100");
-        newHashtable.put(35, "neuer");
+        newHashtable.put(35, "900");
 
         // return hashtable initial fill
         newHashtable.returnHashtable(); 
