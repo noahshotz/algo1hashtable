@@ -8,17 +8,14 @@ import java.util.Map.Entry;
 public class Hashtable implements IntStringMap {
 
     // k sets length of hashtable and mod factor
-    public static int k;
+    private int k;
+    private LinkedList<Entry<Integer, String>>[] hashtable;
 
     // constructor
-    public Hashtable() {
-        k = 11;
-    }
-
-    // hash keys using mod function
-    public static int hashCode(Integer key, int k) {
-        int hashedKey = Math.abs(key % k);
-        return hashedKey;
+    @SuppressWarnings({"unchecked"})
+    public Hashtable(int n) {
+        k = n;
+        hashtable = new LinkedList[k];
     }
 
     // helper to pretty-print hashtable
@@ -33,6 +30,12 @@ public class Hashtable implements IntStringMap {
         System.out.println("---------------");
     }
 
+    // hash keys using mod function
+    public static int hashCode(Integer key, int k) {
+        int hashedKey = Math.abs(key % k);
+        return hashedKey;
+    }
+
     // store key-value-pairs in linkedlist
     static class KeyValuePair {
         public static KeyValuePair newEntry;
@@ -42,11 +45,6 @@ public class Hashtable implements IntStringMap {
             return newEntry;
         }
     }
-
-    // array of LinkedLists with length k
-    @SuppressWarnings({ "unchecked" })
-    // Hartgecodeden Wert mit Variable aus Konstruktor ersetzen
-    public LinkedList<Entry<Integer, String>>[] hashtable = new LinkedList[11];
 
     // put-method
     public String put(Integer key, String value) {
@@ -127,7 +125,7 @@ public class Hashtable implements IntStringMap {
         if (removedValue == null) {
             return null;
         } else {
-            System.out.println("Removed value for key" + key + ": " + removedValue);
+            System.out.println("Removed value for key " + key + ": " + removedValue);
             return removedValue;
         }
     }

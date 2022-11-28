@@ -5,7 +5,7 @@ import programmierPflicht.*;
 public class Main {
     public static void main(String[] args) {
         // create new hashtable
-        Hashtable newHashtable = new Hashtable();
+        Hashtable newHashtable = new Hashtable(11);
 
         // initial insert of values into hashtable
         newHashtable.put(2, "23");

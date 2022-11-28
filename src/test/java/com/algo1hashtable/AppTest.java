@@ -12,7 +12,7 @@ class AppTest {
     @Test
     void testPut01(){
         // create new hashtable
-        Hashtable newHashtable = new Hashtable();
+        Hashtable newHashtable = new Hashtable(11);
         String actual = newHashtable.put(2, "23");
 
         assertNull(actual);
@@ -22,7 +22,7 @@ class AppTest {
     @Test
     void testPut02(){
         // create new hashtable
-        Hashtable newHashtable = new Hashtable();
+        Hashtable newHashtable = new Hashtable(11);
         newHashtable.put(2, "23");
         String actual = newHashtable.put(2, "34");
 
@@ -34,7 +34,7 @@ class AppTest {
     void testGet01() {
 
         // create new hashtable
-        Hashtable newHashtable = new Hashtable();
+        Hashtable newHashtable = new Hashtable(11);
 
         // initial insert of values into hashtable
         newHashtable.put(2, "23");
@@ -57,7 +57,7 @@ class AppTest {
     void testGet02() {
 
         // create new hashtable
-        Hashtable newHashtable = new Hashtable();
+        Hashtable newHashtable = new Hashtable(11);
 
         // initial insert of values into hashtable
         newHashtable.put(2, "23");
@@ -80,7 +80,7 @@ class AppTest {
     void testGet03() {
 
         // create new hashtable
-        Hashtable newHashtable = new Hashtable();
+        Hashtable newHashtable = new Hashtable(11);
 
         // initial insert of values into hashtable
         newHashtable.put(2, "23");
@@ -103,7 +103,7 @@ class AppTest {
     void testRemove01() {
 
         // create new hashtable
-        Hashtable newHashtable = new Hashtable();
+        Hashtable newHashtable = new Hashtable(11);
 
         // initial insert of values into hashtable
         newHashtable.put(2, "23");
@@ -126,7 +126,7 @@ class AppTest {
     void testRemove02() {
 
         // create new hashtable
-        Hashtable newHashtable = new Hashtable();
+        Hashtable newHashtable = new Hashtable(11);
 
         // initial insert of values into hashtable
         newHashtable.put(2, "23");
