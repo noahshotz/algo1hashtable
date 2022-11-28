@@ -1,5 +1,5 @@
 # algo1hashtable
 
-BHT | Algorithms & data structures
+## BHT | Algorithms & data structures
 
 Hashtable implementation using linked lists
