@@ -7,6 +7,8 @@ public class Main {
         // create new hashtable
         Hashtable newHashtable = new Hashtable(11);
 
+        newHashtable.put();
+
         // initial insert of values into hashtable
         newHashtable.put(2, "23");
         newHashtable.put(2, "34");

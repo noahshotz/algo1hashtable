@@ -9,14 +9,14 @@ public class Hashtable implements IntStringMap {
     private int k;
     private LinkedList<KeyValuePair>[] hashtable;
 
-    // constructor
+    // Constructor
     @SuppressWarnings({"unchecked"})
     public Hashtable(int n) {
         k = n;
         hashtable = new LinkedList[k];
     }
 
-    // implementing Interface Map.Entry<K,V>
+    // Implementing Interface Map.Entry<K,V>
     private KeyValuePair KeyValuePair(Integer key, String value) {
         return new KeyValuePair(key, value);
     }
